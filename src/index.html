@@ -1,30 +1,90 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Meander</title>
 
-        <script type="text/javascript" src="./js/paper-full.js"></script>
-        <link rel="stylesheet" href="./styles/base.css">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <meta name="author" content="Simon Roy">
+        <meta name="title" content="Meander">
+
+        <link rel="stylesheet" href="styles/base.css">
+        
+        <script type="text/javascript" src="js/paper/paper-full.js"></script>
 
         <script type="text/paperscript" canvas="meanderCanvas">
-            // Create a Paper.js Path to draw a line into it:
-            var path = new Path();
-            
-            // Give the stroke a color
-            path.strokeColor = 'black';
-            var start = new Point(100, 100);
-            
-            // Move to start and draw a line from there
-            path.moveTo(start);
+            function getRandomArbitrary(min, max) {
+                return Math.random() * (max - min) + min;
+            }
 
-            // Note the plus operator on Point objects.
-            // PaperScript does that for us, and much more!
-            path.lineTo(start + [ 100, -50 ]);
+            var VIEW_MIDDLE = view.size.width / 2;
+
+            var POINT_COUNT = 30;
+            var POINT_DISTANCE = view.size.height / (POINT_COUNT / 2);
+
+            function generateMeander(flow) {
+                var path = new Path({
+                    strokeColor: '#3EA4F0',
+                    strokeWidth: 10,
+                    strokeCap: 'round'
+                });
+                
+                for (var i = 0; i < POINT_COUNT; i++) {
+                    var x = getRandomArbitrary(VIEW_MIDDLE - flow, VIEW_MIDDLE + flow);
+                    var y = i * POINT_DISTANCE;
+                    var newPoint = new Point(x, y);
+
+                    path.add(newPoint);
+                }
+
+                path.smooth({ type: 'continuous' });
+                return path;
+            }
+
+            function onFrame(event) {
+                if (flow == 0) return null;
+                
+                for (var i = 1; i < POINT_COUNT - 1; i++) {
+                    var segment = meander.segments[i];
+                    var sinus = Math.sin(event.time * flow + i);
+
+                    if (segment.point.x < VIEW_MIDDLE) {
+                        segment.point.x = (segment.point.x - sinus);
+                    } else {
+                        segment.point.x = (segment.point.x + sinus);
+                    }
+                }
+                
+                meander.smooth();
+            }
+
+            var flow = 1; 
+
+            function onKeyUp(event) {
+                if (event.key == 'up') {
+                    meander.strokeWidth += 10;
+                    // flow += 10;
+                } else if (event.key == 'down' && flow > 0) {
+                    meander.strokeWidth -= 10;
+                    // flow -= 10;
+                }
+                
+                for (var i = 0; i < POINT_COUNT; i++) {
+                    var segment = meander.segments[i];
+
+                    if (segment.point.x > VIEW_MIDDLE) {
+                        segment.point.x = (VIEW_MIDDLE + i) + flow;
+                    } else {
+                        segment.point.x = (VIEW_MIDDLE - i) - flow;
+                    }
+                }
+                
+                meander.smooth();
+            }
+
+            var meander = generateMeander(1);
         </script>
 
-
-        <title>Meander</title>
     </head>
     <body>
         <div class="grid grid-cols-3 h-screen">
