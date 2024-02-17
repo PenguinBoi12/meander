@@ -1,8 +1,0 @@
-@tailwind base; 
-@tailwind components; 
-
-div {
-	border: 1px solid;
-	@apply border-red-200;
-}
-@tailwind utilities; 
