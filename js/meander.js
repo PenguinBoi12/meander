@@ -32,12 +32,13 @@ function generateRiver(speed, width, height) {
     });
 
     let startPoint = new Point(width / 2, 0);
+    let segmentLength = height / segmentCount;
+    
     path.moveTo(startPoint);
-
-    const segmentLength = height / segmentCount;
 
     for (let i = 0; i < segmentCount; i++) {
         let curvature = curvatures[i];
+
         if (curvature === undefined) {
             curvature = (Math.random() - 0.5); // Initialize random curvature if not set
             curvatures.push(curvature);
@@ -55,7 +56,6 @@ function generateRiver(speed, width, height) {
 
     if (meander) {
         path.strokeWidth = meander.strokeWidth;
-        
         meander.remove();
     }
 
@@ -68,19 +68,31 @@ window.onload = function () {
 
     generateRiver(speed, view.size.width, view.size.height);
 
-    range("width", DEFAULT_WIDTH_RANGE).oninput = function () {
+    document.getElementById("exportSVG").onclick = function() {
+        let svg = paper.project.exportSVG({asString: true});
+        let url = "data:image/svg+xml;utf8," + encodeURIComponent(svg);
+        let link = document.createElement("a");
+
+        link.download = "meander.svg";
+        link.href = url;
+        
+        link.click();
+        link.remove();
+    }
+
+    range("width", DEFAULT_WIDTH_RANGE).oninput = function() {
         console.log(`Width: ${this.value}`)
         meander.strokeWidth = Math.max(this.value, 1);
     }
 
-    range("length", DEFAULT_LENGTH_RANGE).oninput = function () {
+    range("length", DEFAULT_LENGTH_RANGE).oninput = function() {
         console.log(`Length: ${this.value}`)
 
         segmentCount = parseInt(this.value);
         generateRiver(speed, view.size.width, view.size.height);
     }
 
-    range("speed", DEFAULT_SPEED_RANGE).oninput = function () {
+    range("speed", DEFAULT_SPEED_RANGE).oninput = function() {
         console.log(`Speed: ${this.value}`);
 
         speed = parseInt(this.value);

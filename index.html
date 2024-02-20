@@ -19,7 +19,7 @@
                 <canvas class="flex-1" id="meanderCanvas"></canvas>
             </div>
 
-            <div class="flex flex-col border-l-2 border-black">
+            <div class="flex flex-col border-l-2 border-black min-w-[250px]">
                 <div class="text-center py-4 border-b-2 border-black">
                     <h1>PARAMÈTRE DU TRACÉ</h1>
                 </div>
@@ -33,6 +33,8 @@
 
                     <label for="speed">Vitesse</label>
                     <input class="w-10/12" name="speed" type="range">
+
+                    <button id="exportSVG" class="border-2 border-black p-2 m-4">Exporter</button>
                 </div>
 
 <!--                 <footer class="text-sm text-neutral-600 p-4">
