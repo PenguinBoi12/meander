@@ -68,6 +68,11 @@ window.onload = function () {
 
     generateRiver(speed, view.size.width, view.size.height);
 
+    document.getElementById("generate").onclick = function() {
+        curvatures = [];
+        generateRiver(speed, view.size.width, view.size.height);
+    }
+
     document.getElementById("exportSVG").onclick = function() {
         let svg = paper.project.exportSVG({asString: true});
         let url = "data:image/svg+xml;utf8," + encodeURIComponent(svg);
