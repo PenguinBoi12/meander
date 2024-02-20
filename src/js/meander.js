@@ -1,7 +1,7 @@
 const MEANDER_DEFAULT_SPEED = 100;
 const MEANDER_SEGMENT_COUNT = 20;
 
-const DEFAULT_WIDTH_RANGE  = { "min": "0", "max": "100", "value": "5", "step": "1" };
+const DEFAULT_WIDTH_RANGE  = { "min": "0", "max": "50", "value": "5", "step": "1" };
 const DEFAULT_SPEED_RANGE  = { "min": "0", "max": "1000", "value": "50", "step": "1" };
 const DEFAULT_LENGTH_RANGE = { "min": "4", "max": "50" };
 
@@ -54,6 +54,8 @@ function generateRiver(speed, width, height) {
     path.smooth();
 
     if (meander) {
+        path.strokeWidth = meander.strokeWidth;
+        
         meander.remove();
     }
 
@@ -73,7 +75,7 @@ window.onload = function () {
 
     range("length", DEFAULT_LENGTH_RANGE).oninput = function () {
         console.log(`Length: ${this.value}`)
-        
+
         segmentCount = parseInt(this.value);
         generateRiver(speed, view.size.width, view.size.height);
     }
