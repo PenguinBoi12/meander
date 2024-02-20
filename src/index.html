@@ -14,14 +14,30 @@
         <script type="text/javascript" src="js/meander.js"></script>
     </head>
     <body>
-        <div class="grid grid-cols-3 h-screen">
-            <div class="flex flex-col col-span-2">
-                <p>Canvas</p>
-                <canvas class="flex-1" id="meanderCanvas" resize></canvas>
+        <div class="grid grid-cols-5 h-screen">
+            <div class="flex flex-col col-span-4">
+                <canvas class="flex-1" id="meanderCanvas"></canvas>
             </div>
 
-            <div class="flex flex-col col-span-1">
-                <p>Controls</p>
+            <div class="flex flex-col border-l-2 border-black">
+                <div class="text-center py-4 border-b-2 border-black">
+                    <h1>PARAMÈTRE DU TRACÉ</h1>
+                </div>
+
+                <div class="flex flex-col flex-1 p-4">
+                    <label for="width">Largeur</label>
+                    <input class="w-10/12 mx-2" name="width" type="range">
+
+                    <label for="length">Longueur</label>
+                    <input class="w-10/12" name="length" type="range">
+
+                    <label for="speed">Vitesse</label>
+                    <input class="w-10/12" name="speed" type="range">
+                </div>
+
+                <footer class="text-sm text-neutral-600 p-4">
+                    <p>Développé par Simon Roy</p>
+                </footer>
             </div>
         </div>
     </body>

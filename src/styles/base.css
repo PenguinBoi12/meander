@@ -618,12 +618,13 @@ video {
   position: relative;
 }
 
-.col-span-1 {
-  grid-column: span 1 / span 1;
+.col-span-4 {
+  grid-column: span 4 / span 4;
 }
 
-.col-span-2 {
-  grid-column: span 2 / span 2;
+.mx-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 .block {
@@ -654,60 +655,12 @@ video {
   height: 100vh;
 }
 
-.h-full {
-  height: 100%;
-}
-
-.h-fit {
-  height: -moz-fit-content;
-  height: fit-content;
-}
-
-.h-max {
-  height: -moz-max-content;
-  height: max-content;
-}
-
-.min-h-screen {
-  min-height: 100vh;
-}
-
-.w-\[500px\] {
-  width: 500px;
-}
-
-.w-full {
-  width: 100%;
-}
-
-.w-screen {
-  width: 100vw;
-}
-
-.w-fit {
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
-.w-max {
-  width: -moz-max-content;
-  width: max-content;
-}
-
-.w-\[250px\] {
-  width: 250px;
-}
-
-.w-\[400px\] {
-  width: 400px;
+.w-10\/12 {
+  width: 83.333333%;
 }
 
 .flex-1 {
   flex: 1 1 0%;
-}
-
-.grow {
-  flex-grow: 1;
 }
 
 .\!transform {
@@ -722,28 +675,52 @@ video {
   resize: both;
 }
 
-.grid-cols-4 {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-.grid-cols-2 {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.grid-cols-3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.flex-row {
-  flex-direction: row;
+.grid-cols-5 {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
 .flex-col {
   flex-direction: column;
 }
 
+.border-b-2 {
+  border-bottom-width: 2px;
+}
+
+.border-l-2 {
+  border-left-width: 2px;
+}
+
+.border-black {
+  --tw-border-opacity: 1;
+  border-color: rgb(0 0 0 / var(--tw-border-opacity));
+}
+
+.p-4 {
+  padding: 1rem;
+}
+
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
 .capitalize {
   text-transform: capitalize;
+}
+
+.text-neutral-600 {
+  --tw-text-opacity: 1;
+  color: rgb(82 82 82 / var(--tw-text-opacity));
 }
 
 .blur {
@@ -763,10 +740,26 @@ video {
 html, body {
   height: 100%;
   width: 100%;
+  --tw-bg-opacity: 1;
+  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
 }
 
-div {
-  border-width: 2px;
-  --tw-border-opacity: 1;
-  border-color: rgb(254 202 202 / var(--tw-border-opacity));
+input[type="range"] {
+  -webkit-appearance: none;
+  height: 2px;
+  margin: 20px auto;
+  background-color: black;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background-color: black;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 5px;
+  height: 20px;
+  border: none;
+  border-radius: 0;
+  background-color: black;
 }
