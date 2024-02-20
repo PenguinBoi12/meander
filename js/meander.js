@@ -10,8 +10,9 @@ let meander;
 
 let speed = MEANDER_DEFAULT_SPEED;
 let segmentCount = MEANDER_SEGMENT_COUNT;
-
 let curvatures = [];
+
+let animated = true
 
 function range(name, options) {
     let range = document.querySelector(`[name='${name}']`);
@@ -85,22 +86,45 @@ window.onload = function () {
         link.remove();
     }
 
+    document.getElementById("toggleAnimation").onclick = function() {
+        animated = !animated;
+
+        // I feel like stuff like that could be done elsewhere
+        let img = this.getElementsByTagName("img")[0];
+        img.src = animated ? "images/play.svg" : "images/pause.svg"
+    }
+
     range("width", DEFAULT_WIDTH_RANGE).oninput = function() {
-        console.log(`Width: ${this.value}`)
         meander.strokeWidth = Math.max(this.value, 1);
     }
 
     range("length", DEFAULT_LENGTH_RANGE).oninput = function() {
-        console.log(`Length: ${this.value}`)
-
         segmentCount = parseInt(this.value);
         generateRiver(speed, view.size.width, view.size.height);
     }
 
     range("speed", DEFAULT_SPEED_RANGE).oninput = function() {
-        console.log(`Speed: ${this.value}`);
-
         speed = parseInt(this.value);
         generateRiver(speed, view.size.width, view.size.height);
     };
+
+    view.onFrame = function(event) {
+        if (!animated || speed == 0) return;
+
+        for (let i = 1; i < segmentCount - 1; i++) {
+            let segment = meander.segments[i];
+
+            if (segment) {
+                let sinus = Math.sin(event.time + i);
+
+                if (segment.point.x < (view.size.width / 2)) {
+                    segment.point.x = (segment.point.x - sinus);
+                } else {
+                    segment.point.x = (segment.point.x + sinus);
+                }
+            }
+        }
+
+        meander.smooth();
+    }
 }
