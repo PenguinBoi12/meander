@@ -866,6 +866,10 @@ video {
   width: 25px;
 }
 
+.w-\[35px\] {
+  width: 35px;
+}
+
 .w-\[this-is\\\\\] {
   width: this-is\\;
 }
@@ -876,30 +880,6 @@ video {
 
 .w-\[weird-and-invalid\] {
   width: weird-and-invalid;
-}
-
-.w-\[10px\] {
-  width: 10px;
-}
-
-.w-\[100px\] {
-  width: 100px;
-}
-
-.w-\[50px\] {
-  width: 50px;
-}
-
-.w-\[30px\] {
-  width: 30px;
-}
-
-.w-\[40px\] {
-  width: 40px;
-}
-
-.w-\[35px\] {
-  width: 35px;
 }
 
 .min-w-\[250px\] {
@@ -2081,11 +2061,6 @@ video {
   vertical-align: super;
 }
 
-.text-sm {
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-}
-
 .font-bold {
   font-weight: 700;
 }
@@ -2165,11 +2140,6 @@ video {
 .text-blue-500 {
   --tw-text-opacity: 1;
   color: rgb(59 130 246 / var(--tw-text-opacity));
-}
-
-.text-neutral-600 {
-  --tw-text-opacity: 1;
-  color: rgb(82 82 82 / var(--tw-text-opacity));
 }
 
 .underline {
@@ -2498,10 +2468,11 @@ video {
 }
 
 html, body {
+  font-family: Helvetica, Arial, sans-serif;
   height: 100%;
   width: 100%;
   --tw-bg-opacity: 1;
-  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
+  background-color: rgb(209 213 219 / var(--tw-bg-opacity))
 }
 
 input[type="range"] {
@@ -2511,8 +2482,7 @@ input[type="range"] {
   background-color: black;
 }
 
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
+input[type="range"]::-moz-slider-thumb {
   background-color: black;
 }
 
@@ -2522,6 +2492,61 @@ input[type="range"]::-moz-range-thumb {
   border: none;
   border-radius: 0;
   background-color: black;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+}
+
+/*input[type=range]::-webkit-slider-runnable-track {
+	height: 2px;
+	margin: 20px auto;
+
+	background-color: black;	
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; 
+
+	width: 5px;
+	height: 20px;
+
+	border: none;
+	border-radius: 0;
+
+	background-color: black;
+}*/
+
+.floating-container {
+  position: absolute;
+  padding: 15px 20px;
+  margin: 20px;
+}
+
+.title {
+  display: flex;
+  min-width: 240px;
+  min-height: 60px;
+  /*	padding: 15px 20px;
+	margin: 20px;*/
+  /*	min-width: 100px;*/
+  /*	line-height: 0;*/
+  justify-content: center;
+  align-items: center;
+  background-color: #29AA5D;
+  border: 2px solid #000;
+}
+
+.title span {
+  font-size: 25px;
+  line-height: 1;
+}
+
+.info {
+  min-width: 100px;
+  line-height: 0;
+  background-color: #29AA5D;
+  border: 2px solid #000;
 }
 
 @media (min-width: 640px) {

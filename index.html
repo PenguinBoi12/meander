@@ -14,6 +14,10 @@
         <script type="text/javascript" src="js/meander.js"></script>
     </head>
     <body>
+        <div class="floating-container title">
+            <span class="inline-block align-middle">MEANDRE EXP4</span>
+        </div>
+
         <div class="grid grid-cols-5 h-screen">
             <div class="flex flex-col col-span-4">
                 <canvas class="flex-1" id="meanderCanvas"></canvas>
@@ -25,17 +29,17 @@
                 </div>
 
                 <div class="flex flex-col flex-1 p-4">
-                    <label for="width">Largeur</label>
-                    <input class="w-10/12 mx-2" name="width" type="range">
-
                     <label for="length">Longueur</label>
                     <input class="w-10/12" name="length" type="range">
 
-                    <label for="speed">Vitesse</label>
+                    <label for="speed">Largeur</label>
                     <input class="w-10/12" name="speed" type="range">
 
+                    <label for="width">Épaisseur</label>
+                    <input class="w-10/12 mx-2" name="width" type="range">
+
                     <div class="grid grid-cols-3 gap-2 m-4">
-                        <button id="toggleAnimation" class="border-2 border-black p-2" title="Génère une nouvelle rivière (conserve les paramètres actuels)">
+                        <button id="toggleAnimation" class="border-2 border-black p-2" title="Commence/Arrête l'animation">
                             <img class="w-[35px] mx-auto" src="images/play.svg">
                         </button>
                         <button id="generate" class="border-2 border-black p-2" title="Génère une nouvelle rivière (conserve les paramètres actuels)">
@@ -46,11 +50,11 @@
                         </button>
                     </div>
                 </div>
-
-<!--                 <footer class="text-sm text-neutral-600 p-4">
-                    <p>Développé par Simon Roy</p>
-                </footer> -->
             </div>
+        </div>
+
+        <div class="floating-container info">
+            <span class="inline-block align-middle">MEANDRE EXP4</span>
         </div>
     </body>
 </html>

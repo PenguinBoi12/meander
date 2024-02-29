@@ -3,6 +3,7 @@
 @tailwind utilities; 
 
 html, body {
+	font-family: Helvetica, Arial, sans-serif;
 	@apply w-full h-full bg-gray-300
 }
 
@@ -15,11 +16,9 @@ input[type="range"] {
 	background-color: black;
 }
 
-input[type="range"]::-webkit-slider-thumb {
-	-webkit-appearance: none;
-
+input[type="range"]::-moz-slider-thumb {
 	background-color: black;
-} 
+}
 
 input[type="range"]::-moz-range-thumb {
 	width: 5px;
@@ -29,4 +28,69 @@ input[type="range"]::-moz-range-thumb {
 	border-radius: 0;
 
 	background-color: black;
+}
+
+input[type=range] {
+    -webkit-appearance: none;
+}
+
+/*input[type=range]::-webkit-slider-runnable-track {
+	height: 2px;
+	margin: 20px auto;
+
+	background-color: black;	
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; 
+
+	width: 5px;
+	height: 20px;
+
+	border: none;
+	border-radius: 0;
+
+	background-color: black;
+}*/
+
+.floating-container {
+	position: absolute;
+
+	padding: 15px 20px;
+	margin: 20px;
+}
+
+.title {
+	display: flex;
+
+	min-width: 240px;
+	min-height: 60px;
+
+/*	padding: 15px 20px;
+	margin: 20px;*/
+
+/*	min-width: 100px;*/
+
+/*	line-height: 0;*/
+
+	justify-content: center;
+	align-items: center;
+
+	background-color: #29AA5D;
+	border: 2px solid #000;
+}
+
+.title span {
+	font-size: 25px;
+	line-height: 1;
+}
+
+.info {
+	min-width: 100px;
+
+	line-height: 0;
+
+	background-color: #29AA5D;
+
+	border: 2px solid #000;
 }
