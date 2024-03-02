@@ -55,8 +55,6 @@ input[type=range]::-webkit-slider-thumb {
 
 .floating-container {
 	position: absolute;
-
-	padding: 15px 20px;
 	margin: 20px;
 }
 
@@ -66,18 +64,15 @@ input[type=range]::-webkit-slider-thumb {
 	min-width: 240px;
 	min-height: 60px;
 
-/*	padding: 15px 20px;
-	margin: 20px;*/
-
-/*	min-width: 100px;*/
-
-/*	line-height: 0;*/
+	padding: 15px 20px;
 
 	justify-content: center;
 	align-items: center;
 
 	background-color: #29AA5D;
 	border: 2px solid #000;
+
+	@apply floating-container
 }
 
 .title span {
@@ -85,12 +80,38 @@ input[type=range]::-webkit-slider-thumb {
 	line-height: 1;
 }
 
-.info {
-	min-width: 100px;
+.settings {
+	top: 0;
+	right: 0;
 
-	line-height: 0;
+	width: 280px;
 
+	@apply floating-container
+}
+
+.settings .line, .settings .draw {
+	border: 2px solid black;
+}
+
+.settings .line {
+	background-color: #03BEDE;
+}
+
+.settings .draw {
+	background-color: #E16AB7;
+}
+
+.settings > button {
 	background-color: #29AA5D;
+}
 
+.info {
+	bottom: 0;
+
+	padding: 8px;
+
+	background-color: #F9E80A;
 	border: 2px solid #000;
+
+	@apply floating-container
 }

@@ -14,21 +14,24 @@
         <script type="text/javascript" src="js/meander.js"></script>
     </head>
     <body>
-        <div class="floating-container title">
-            <span class="inline-block align-middle">MEANDRE EXP4</span>
-        </div>
+        <div class="grid h-screen">
+            <div class="title">
+                <span class="inline-block align-middle">MEANDRE EXP4</span>
+            </div>
 
-        <div class="grid grid-cols-5 h-screen">
-            <div class="flex flex-col col-span-4">
+            <div class="flex flex-col">
                 <canvas class="flex-1" id="meanderCanvas"></canvas>
             </div>
 
-            <div class="flex flex-col border-l-2 border-black min-w-[250px]">
-                <div class="text-center py-4 border-b-2 border-black">
-                    <h1>PARAMÈTRE DU TRACÉ</h1>
-                </div>
+            <div class="settings">
+                    <div class="text-center text-[25px] cursor-pointer mb-[15px]">
+                        <div class="table table-fixed border-collapse w-full">
+                            <div class="table-cell line">LIGNE</div>
+                            <div class="table-cell draw">DESSIN</div>
+                        </div>
+                    </div>
 
-                <div class="flex flex-col flex-1 p-4">
+                <div class="flex flex-col flex-1 p-4 line">
                     <label for="length">Longueur</label>
                     <input class="w-10/12" name="length" type="range">
 
@@ -51,10 +54,12 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="floating-container info">
-            <span class="inline-block align-middle">MEANDRE EXP4</span>
+            <div class="info cursor-pointer">
+                <span class="inline-block align-middle">
+                    <img class="w-[40px]" src="images/question.svg">
+                </span>
+            </div>
         </div>
     </body>
 </html>
