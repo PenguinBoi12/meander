@@ -13,7 +13,7 @@ input[type="range"] {
 	height: 2px;
 	margin: 20px auto;
 
-	background-color: black;
+	background: black;
 }
 
 input[type="range"]::-moz-slider-thumb {
@@ -21,20 +21,13 @@ input[type="range"]::-moz-slider-thumb {
 }
 
 input[type="range"]::-moz-range-thumb {
-	width: 5px;
-	height: 20px;
-
 	border: none;
-	border-radius: 0;
-
 	background-color: black;
 }
 
-input[type=range] {
-    -webkit-appearance: none;
-}
+input[type=range]::-webkit-slider-runnable-track {
+	-webkit-appearance: none;
 
-/*input[type=range]::-webkit-slider-runnable-track {
 	height: 2px;
 	margin: 20px auto;
 
@@ -42,16 +35,20 @@ input[type=range] {
 }
 
 input[type=range]::-webkit-slider-thumb {
-  -webkit-appearance: none; 
+	-webkit-appearance: none;
 
-	width: 5px;
-	height: 20px;
+	width: 15px;
+	height: 15px;
 
 	border: none;
-	border-radius: 0;
+	border-radius: 50%;
+	
+	margin: -6px 0px;
 
-	background-color: black;
-}*/
+	padding: auto;
+
+	background: black;
+}
 
 .floating-container {
 	position: absolute;
