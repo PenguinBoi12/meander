@@ -618,10 +618,6 @@ video {
   position: relative;
 }
 
-.m-4 {
-  margin: 1rem;
-}
-
 .mx-2 {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
@@ -672,20 +668,16 @@ video {
   display: none;
 }
 
+.h-\[35px\] {
+  height: 35px;
+}
+
 .h-screen {
   height: 100vh;
 }
 
 .w-10\/12 {
   width: 83.333333%;
-}
-
-.w-\[25px\] {
-  width: 25px;
-}
-
-.w-\[35px\] {
-  width: 35px;
 }
 
 .w-\[40px\] {
