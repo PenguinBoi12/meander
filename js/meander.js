@@ -1,9 +1,9 @@
 const MEANDER_DEFAULT_SPEED = 100;
 const MEANDER_SEGMENT_COUNT = 20;
 
-const DEFAULT_WIDTH_RANGE  = { "min": "0", "max": "500", "value": "5", "step": "1" };
-const DEFAULT_SPEED_RANGE  = { "min": "0", "max": "1000", "value": "50", "step": "1" };
-const DEFAULT_LENGTH_RANGE = { "min": "4", "max": "50" };
+const DEFAULT_THICKNESS_RANGE  = { "min": "0", "max": "500", "value": "5", "step": "1" };
+const DEFAULT_SPEED_RANGE      = { "min": "0", "max": "1000", "value": "50", "step": "1" };
+const DEFAULT_LENGTH_RANGE     = { "min": "4", "max": "50" };
 
 
 let meander;
@@ -33,26 +33,38 @@ function generateRiver(speed, width, height) {
     });
 
     let startPoint = new Point(width / 2, 0);
+    let endPoint = new Point(width / 0, height)
     let segmentLength = height / segmentCount;
-    
+
     path.moveTo(startPoint);
 
-    for (let i = 0; i < segmentCount; i++) {
+    for (let i = 0; i < segmentCount + 1; i++) {
         let curvature = curvatures[i];
 
         if (curvature === undefined) {
-            curvature = (Math.random() - 0.5); // Initialize random curvature if not set
+            curvature = (Math.random() - 0.5) * 0.2; // Initialize random curvature if not set
             curvatures.push(curvature);
         }
 
         curvature *= speed; // Adjust curvature based on speed
 
-        const offsetX = Math.sin((i / segmentCount) * Math.PI) * curvature; // Adjust the offset based on speed
-        const nextPoint = new Point(width / 2 + offsetX, (i + 1) * segmentLength);
+        const offsetX = Math.sin((i / segmentCount) * Math.PI * 2) * curvature; // Adjust the offset based on speed
+        const offsetY = Math.cos((i / segmentCount) * Math.PI * 2) * curvature; // Adjust the offset based on speed
+        const nextPoint = new Point(width / 2 + offsetX, (i + 1) * segmentLength + offsetY);
 
-        path.lineTo(nextPoint);
+        // Calculate control points
+        const lastSegment = path.lastSegment;
+        const lastPoint = lastSegment.point;
+        const controlPoint1 = lastPoint.add([offsetX * 0.5, offsetY * 0.5]);
+        const controlPoint2 = nextPoint.subtract([offsetX * 0.5, offsetY * 0.5]);
+
+        // Create cubic bezier curve
+        path.cubicCurveTo(controlPoint1, controlPoint2, nextPoint);
     }
 
+    path.moveTo(endPoint);
+
+    path.simplify(10);
     path.smooth();
 
     if (meander) {
@@ -62,6 +74,7 @@ function generateRiver(speed, width, height) {
 
     meander = path;
 }
+
 
 window.onload = function () {
     paper.install(window);
@@ -94,7 +107,7 @@ window.onload = function () {
         img.src = animated ? "images/play.svg" : "images/pause.svg"
     }
 
-    range("width", DEFAULT_WIDTH_RANGE).oninput = function() {
+    range("thickness", DEFAULT_THICKNESS_RANGE).oninput = function() {
         meander.strokeWidth = Math.max(this.value, 1);
     }
 
@@ -103,6 +116,7 @@ window.onload = function () {
         generateRiver(speed, view.size.width, view.size.height);
     }
 
+    // Now called width
     range("speed", DEFAULT_SPEED_RANGE).oninput = function() {
         speed = parseInt(this.value);
         generateRiver(speed, view.size.width, view.size.height);
