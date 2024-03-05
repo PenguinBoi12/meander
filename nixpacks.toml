@@ -1,8 +1,5 @@
 [phases.setup]
-aptPkgs = ["npm"]   # Install the wget package with apt-get
+aptPkgs = ["nodejs", "npm"]   # Install the wget package with apt-get
 
 [phases.build]
-cmds = ["npm install"]
-
-[start]
-cmd = "npm build"
+cmds = ["npm install", "npm run build"]
