@@ -31,17 +31,44 @@
                     </div>
                 </div>
 
-                <div class="flex flex-col flex-1 p-4 line">
-                    <label for="length">Longueur</label>
-                    <input class="w-10/12" name="length" type="range">
+                <div class="flex flex-col flex-1 p-4 pt-[5px] controls line">
+                    <div class="input-group">
+                        <label for="speed">Largeur</label>
+                        <input name="speed" type="range">
+                    </div>
 
-                    <label for="speed">Largeur</label>
-                    <input class="w-10/12" name="speed" type="range">
+                    <div class="input-group">
+                        <label for="length">Longueur</label>
+                        <input name="length" type="range">
+                    </div>
 
-                    <label for="width">Épaisseur</label>
-                    <input class="w-10/12 mx-2" name="width" type="range">
+                    <div class="input-group">                        
+                        <label for="width">Épaisseur</label>
+                        <input name="width" type="range">
+                    </div>
 
-                    <div class="grid grid-cols-3 gap-2">
+                    <div class="input-group">                        
+                        <label for="type">Tracé</label>
+
+                        <input name="type" type="radio" check>
+                        <label class="ml-[5px] text-[12px]" for="line">Ligne</label>
+
+                        <input name="type" type="radio">
+                        <label class="ml-[5px] text-[12px]" for="dots">Points</label>
+                    </div>
+
+                    <div class="input-group">                        
+                        <label for="algo">Algo.</label>
+                        
+                        <input name="algo" value="normal" type="radio" check>
+                        <label class="ml-[5px] text-[12px]" for="normal">Simple</label>
+
+                        <input name="algo" value="chaos" type="radio">
+                        <label class="ml-[5px] text-[12px]" for="algo">Chaos</label>
+                    </div>
+
+
+                    <div class="grid grid-cols-3 gap-2 pt-[15px]">
                         <button id="toggleAnimation" class="border-2 border-black p-2" title="Commence/Arrête l'animation">
                             <img class="h-[25px] mx-auto" src="images/play.svg">
                         </button>

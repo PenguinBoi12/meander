@@ -13,7 +13,7 @@ input[type="range"] {
 	-webkit-appearance: none;
 
 	height: 2px;
-	margin: 20px auto;
+	margin: 20px 0px 20px 7x;
 
 	background: black;
 }
@@ -48,8 +48,54 @@ input[type=range]::-webkit-slider-thumb {
 	margin: -6px 0px;
 
 	padding: auto;
+	border-radius: 50%;
 
 	background: black;
+}
+
+input[type="radio"] {
+  /* Add if not using autoprefixer */
+  -webkit-appearance: none;
+  
+  /* Remove most all native input styles */
+  appearance: none;
+  
+  /* For iOS < 15 */
+  background-color: transparent;
+
+  /* Not removed via appearance */
+  margin: 0;
+
+  font: inherit;
+  width: 1.15em;
+  border: 0.15em solid black;
+  
+  border-radius: 50%;
+
+  transform: translateY(-0.075em);
+
+  display: grid;
+  place-content: center;
+}
+
+input[type="radio"]::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  
+  border-radius: 50%;
+
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  
+  box-shadow: inset 1em 1em var(--form-control-color);
+
+  /* Windows High Contrast Mode */
+  background-color: CanvasText;
+}
+
+input[type="radio"]:checked::before {
+  transform: scale(1);
 }
 
 .floating-container {
@@ -86,6 +132,21 @@ input[type=range]::-webkit-slider-thumb {
 	width: 280px;
 
 	@apply floating-container
+}
+
+.settings .controls .input-group {
+	display: flex;
+	align-items: center;
+
+	height: 45px;
+}
+
+.settings .controls .input-group input {
+	flex: 1;
+}
+
+.settings .controls .input-group label {
+	width: 75px;
 }
 
 .settings .line, .settings .draw {

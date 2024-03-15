@@ -741,11 +741,6 @@ video {
   clear: none;
 }
 
-.mx-2 {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-}
-
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -759,8 +754,12 @@ video {
   margin-top: 0.5rem;
 }
 
-.mt-\[200px\] {
-  margin-top: 200px;
+.mr-\[5px\] {
+  margin-right: 5px;
+}
+
+.ml-\[5px\] {
+  margin-left: 5px;
 }
 
 .box-border {
@@ -888,10 +887,6 @@ video {
 
 .h-screen {
   height: 100vh;
-}
-
-.w-10\/12 {
-  width: 83.333333%;
 }
 
 .w-\[60px\] {
@@ -2038,8 +2033,16 @@ video {
   padding-bottom: 65px;
 }
 
+.pt-\[15px\] {
+  padding-top: 15px;
+}
+
 .pt-\[200px\] {
   padding-top: 200px;
+}
+
+.pt-\[5px\] {
+  padding-top: 5px;
 }
 
 .text-left {
@@ -2108,6 +2111,10 @@ video {
 
 .text-\[25px\] {
   font-size: 25px;
+}
+
+.text-\[12px\] {
+  font-size: 12px;
 }
 
 .font-bold {
@@ -2534,7 +2541,7 @@ html, body {
 input[type="range"] {
   -webkit-appearance: none;
   height: 2px;
-  margin: 20px auto;
+  margin: 20px 0px 20px 7x;
   background: black;
 }
 
@@ -2559,10 +2566,45 @@ input[type=range]::-webkit-slider-thumb {
   width: 15px;
   height: 15px;
   border: none;
-  border-radius: 50%;
   margin: -6px 0px;
   padding: auto;
+  border-radius: 50%;
   background: black;
+}
+
+input[type="radio"] {
+  /* Add if not using autoprefixer */
+  -webkit-appearance: none;
+  /* Remove most all native input styles */
+  -moz-appearance: none;
+       appearance: none;
+  /* For iOS < 15 */
+  background-color: transparent;
+  /* Not removed via appearance */
+  margin: 0;
+  font: inherit;
+  width: 1.15em;
+  border: 0.15em solid black;
+  border-radius: 50%;
+  transform: translateY(-0.075em);
+  display: grid;
+  place-content: center;
+}
+
+input[type="radio"]::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em var(--form-control-color);
+  /* Windows High Contrast Mode */
+  background-color: CanvasText;
+}
+
+input[type="radio"]:checked::before {
+  transform: scale(1);
 }
 
 .floating-container {
@@ -2594,6 +2636,20 @@ input[type=range]::-webkit-slider-thumb {
   width: 280px;
   position: absolute;
   margin: 20px
+}
+
+.settings .controls .input-group {
+  display: flex;
+  align-items: center;
+  height: 45px;
+}
+
+.settings .controls .input-group input {
+  flex: 1;
+}
+
+.settings .controls .input-group label {
+  width: 75px;
 }
 
 .settings .line, .settings .draw {
@@ -2691,26 +2747,6 @@ input[type=range]::-webkit-slider-thumb {
 @media (min-width: 640px) {
   .sm\:underline {
     text-decoration-line: underline;
-  }
-}
-
-@media (min-width: 768px) {
-  .md\:text-\[20px\] {
-    font-size: 20px;
-  }
-
-  .md\:text-\[25px\] {
-    font-size: 25px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .lg\:text-\[20px\] {
-    font-size: 20px;
-  }
-
-  .lg\:text-\[25px\] {
-    font-size: 25px;
   }
 }
 
