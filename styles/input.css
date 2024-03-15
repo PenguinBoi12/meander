@@ -4,7 +4,9 @@
 
 html, body {
 	font-family: Helvetica, Arial, sans-serif;
-	@apply w-full h-full bg-gray-300
+	background-color: #D7D5D3;
+
+	@apply w-full h-full
 }
 
 input[type="range"] {
@@ -98,17 +100,28 @@ input[type=range]::-webkit-slider-thumb {
 	background-color: #E16AB7;
 }
 
-.settings > button {
+.settings button {
+	padding: 5px 0px;
 	background-color: #29AA5D;
 }
 
 .info {
 	bottom: 0;
 
-	padding: 8px;
-
 	background-color: #F9E80A;
 	border: 2px solid #000;
 
 	@apply floating-container
+}
+
+.info-container {
+	margin: 20px;
+
+	width: 100%;
+	height: 100%;
+
+	border: 2px solid #000;
+	outline: none;
+
+	background-color: #F9E80A;
 }
