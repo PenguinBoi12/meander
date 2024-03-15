@@ -2102,6 +2102,14 @@ video {
   font-size: 25px;
 }
 
+.text-\[15px\] {
+  font-size: 15px;
+}
+
+.text-\[20px\] {
+  font-size: 20px;
+}
+
 .font-bold {
   font-weight: 700;
 }
