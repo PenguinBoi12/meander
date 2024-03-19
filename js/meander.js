@@ -124,7 +124,7 @@ class Meander {
 
     setAlgorithm(func) {
         this.algorithm = func;
-        this.generate();
+        this.generate(this.curvatures);
     }
 
     toggleAnimation() {
