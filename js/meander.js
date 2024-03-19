@@ -1,11 +1,11 @@
 const MEANDER_DEFAULT_SPEED = 100;
 const MEANDER_SEGMENT_COUNT = 20;
 
-const DEFAULT_WIDTH_RANGE  = { "min": "0", "max": "400", "value": "50", "step": "1" };
+const DEFAULT_WEIGHT_RANGE  = { "min": "0", "max": "400", "value": "50", "step": "1" };
 const DEFAULT_SPEED_RANGE  = { "min": "0", "max": "1000", "value": "50", "step": "1" };
 const DEFAULT_LENGTH_RANGE = { "min": "4", "max": "50", "value": "20" };
 
-function simpleRiverAlgorithm(path, speed, width, height, segmentCount, curvatures) {
+function normalRiverAlgorithm(path, speed, width, height, segmentCount, curvatures) {
     let startPoint = new Point(width / 2, 0);
     let segmentLength = height / segmentCount;
     
@@ -31,6 +31,45 @@ function simpleRiverAlgorithm(path, speed, width, height, segmentCount, curvatur
     return path;
 }
 
+function chaoticRiverAlgorithm(path, speed, width, height, segmentCount, curvatures) {
+    let startPoint = new Point(width / 2, 0);
+    let endPoint = new Point(width / 0, height)
+    let segmentLength = height / segmentCount;
+
+    path.moveTo(startPoint);
+
+    for (let i = 0; i < segmentCount + 1; i++) {
+        let curvature = curvatures[i];
+
+        if (curvature === undefined) {
+            curvature = (Math.random() - 0.5) * 0.2; // Initialize random curvature if not set
+            curvatures.push(curvature);
+        }
+
+        curvature *= speed; // Adjust curvature based on speed
+
+        const offsetX = Math.sin((i / segmentCount) * Math.PI * 2) * curvature; // Adjust the offset based on speed
+        const offsetY = Math.cos((i / segmentCount) * Math.PI * 2) * curvature; // Adjust the offset based on speed
+        const nextPoint = new Point(width / 2 + offsetX, (i + 1) * segmentLength + offsetY);
+
+        // Calculate control points
+        const lastSegment = path.lastSegment;
+        const lastPoint = lastSegment.point;
+        const controlPoint1 = lastPoint.add([offsetX * 0.5, offsetY * 0.5]);
+        const controlPoint2 = nextPoint.subtract([offsetX * 0.5, offsetY * 0.5]);
+
+        // Create cubic bezier curve
+        path.cubicCurveTo(controlPoint1, controlPoint2, nextPoint);
+    }
+
+    path.moveTo(endPoint);
+
+    path.simplify(10);
+    path.smooth();
+
+    return path;
+}
+
 class Meander {
     constructor(width, height) {
         this.animated = true;
@@ -43,13 +82,13 @@ class Meander {
         this.segmentCount = MEANDER_SEGMENT_COUNT;
         this.curvatures = []
 
-        this.algorithm = simpleRiverAlgorithm
+        this.algorithm = normalRiverAlgorithm
     }
 
-    generate() {
+    generate(curvatures = []) {
         const path = new Path({
             strokeColor: '#000000',
-            strokeWidth: DEFAULT_WIDTH_RANGE["value"],
+            strokeWidth: DEFAULT_WEIGHT_RANGE["value"],
             strokeCap: 'round'
         });
 
@@ -58,7 +97,7 @@ class Meander {
             this.path.remove();
         }
 
-        this.curvatures = [];
+        this.curvatures = curvatures;
         this.path = this.algorithm(
             path,
             this._speed,
@@ -70,16 +109,21 @@ class Meander {
     }
 
     setSpeed(value) {
-        this.speed = value;
-        this.generate();
+        this._speed = value;
+        this.generate(this.curvatures);
     }
 
-    setWidth(value) {
+    setWeight(value) {
         this.path.strokeWidth = Math.max(value, 1);
     }
 
     setLength(value) {
         this.segmentCount = value;
+        this.generate(this.curvatures);
+    }
+
+    setAlgorithm(func) {
+        this.algorithm = func;
         this.generate();
     }
 
@@ -135,8 +179,8 @@ window.onload = function() {
         img.src = meander.animated ? "images/play.svg" : "images/pause.svg"
     }
 
-    range("width", DEFAULT_WIDTH_RANGE).oninput = function() {
-        meander.setWidth(this.value);
+    range("weight", DEFAULT_WEIGHT_RANGE).oninput = function() {
+        meander.setWeight(this.value);
     }
 
     range("length", DEFAULT_LENGTH_RANGE).oninput = function() {
@@ -148,12 +192,12 @@ window.onload = function() {
     };
 
     radio("trace", (e) => {
-        console.log(e.value);
-        meander.path.strokeColor = 0;
+        meander.path.fullySelected = e.value === "dots";
     });
 
     radio("algorithm", (e) => {
         console.log(e.value);
+        meander.setAlgorithm(e.value === "normal" ? normalRiverAlgorithm : chaoticRiverAlgorithm);
     });
 
     view.onFrame = function(event) {
