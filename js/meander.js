@@ -176,7 +176,7 @@ window.onload = function() {
         meander.toggleAnimation()
 
         let img = this.getElementsByTagName("img")[0];
-        img.src = meander.animated ? "images/play.svg" : "images/pause.svg"
+        img.src = meander.animated ? "images/pause.svg" : "images/play.svg"
     }
 
     range("weight", DEFAULT_WEIGHT_RANGE).oninput = function() {
@@ -192,7 +192,7 @@ window.onload = function() {
     };
 
     radio("trace", (e) => {
-        meander.path.fullySelected = e.value === "dots";
+        meander.path.selected = e.value === "dots";
     });
 
     radio("algorithm", (e) => {
