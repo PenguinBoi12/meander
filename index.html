@@ -16,7 +16,7 @@
     <body class="overflow-hidden">
         <div class="grid h-screen">
             <div class="title">
-                <span class="inline-block align-middle">MÉANDRE EXP4</span>
+                <span class="inline-block align-middle">MÉANDRE EXP3</span>
             </div>
 
             <div class="flex flex-col">
@@ -26,12 +26,12 @@
             <div class="settings">
                 <div class="text-center text-[25px] cursor-pointer mb-[15px]">
                     <div class="table border-collapse w-full h-[60px]">
-                        <div class="table-cell align-middle line">LIGNE</div>
-                        <div class="table-cell align-middle draw ">DESSIN</div>
+                        <div id="line" class="table-cell align-middle line">LIGNE</div>
+                        <div id="draw" class="table-cell align-middle draw">DESSIN</div>
                     </div>
                 </div>
 
-                <div class="flex flex-col flex-1 p-4 pt-[5px] controls line">
+                <div id="settings" class="flex flex-col flex-1 p-4 pt-[5px] controls line">
                     <div class="input-group">
                         <label for="speed">Largeur</label>
                         <input name="speed" type="range">
@@ -57,7 +57,7 @@
                         <label class="ml-[5px] text-[12px]" for="dots">Points</label>
                     </div>
 
-                    <div class="input-group">                        
+                    <div id="algorithm" class="input-group">                        
                         <label for="algorithm">Algo.</label>
                         
                         <input name="algorithm" value="normal" type="radio" checked="checked">
@@ -109,7 +109,7 @@
                                 <br/>
 
                                 <div>
-                                    Pour Méandre EXP4, j’ai fais appel au programmeur Simon Roy, afin qu’il m’aide à créer une plate-forme interactive. Le but principal était de mettre à disposition un outils numérique qui permet d’expérimenter et de créer des ligne de façon aléatoire en changeant les paramètre de génération.
+                                    Pour Méandre EXP3, j’ai fais appel au programmeur Simon Roy, afin qu’il m’aide à créer une plate-forme interactive. Le but principal était de mettre à disposition un outils numérique qui permet d’expérimenter et de créer des ligne de façon aléatoire en changeant les paramètre de génération.
                                 </div>
                             </div>
                         </div>
