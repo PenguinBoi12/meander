@@ -94,6 +94,8 @@ class Meander {
 
         if (this.path) {
             path.strokeWidth = this.path.strokeWidth;
+            path.dashArray = this.path.dashArray;
+
             this.path.remove();
         }
 
@@ -192,7 +194,7 @@ window.onload = function() {
     };
 
     radio("trace", (e) => {
-        meander.path.dashArray = [];
+        meander.path.dashArray = null;
 
         if (e.value === "dots") {
             meander.path.dashArray = [0, 100];
