@@ -192,7 +192,11 @@ window.onload = function() {
     };
 
     radio("trace", (e) => {
-        meander.path.selected = e.value === "dots";
+        meander.path.dashArray = [];
+
+        if (e.value === "dots") {
+            meander.path.dashArray = [0, 100];
+        }
     });
 
     radio("algorithm", (e) => {
