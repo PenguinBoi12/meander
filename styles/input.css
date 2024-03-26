@@ -143,6 +143,7 @@ input[type="radio"]:checked::before {
 
 .settings .controls .input-group input {
 	flex: 1;
+	width: 100%;
 }
 
 .settings .controls .input-group label {
