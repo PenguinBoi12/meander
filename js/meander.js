@@ -70,6 +70,7 @@ function chaoticRiverAlgorithm(path, speed, width, height, segmentCount, curvatu
 class Meander {
     constructor(width, height) {
         this.animated = true;
+        this.color = "#000000";
 
         this._speed = MEANDER_DEFAULT_SPEED;
         this._width = width;
@@ -84,7 +85,7 @@ class Meander {
 
     generate(curvatures = this.curvatures) {
         const path = new Path({
-            strokeColor: "#000000",
+            strokeColor: this.color,
             strokeWidth: DEFAULT_WEIGHT_RANGE["value"],
             strokeCap: "round"
         });
@@ -108,7 +109,7 @@ class Meander {
     }
 
     generateFromPath(path) {
-        path.strokeColor = "#000000";
+        path.strokeColor = this.color;
         path.strokeWidth = DEFAULT_WEIGHT_RANGE["value"];
         path.strokeCap = "round";
 
@@ -127,8 +128,11 @@ class Meander {
     add(point) {
         this.path.add(point);
         this.segmentCount += 1;
+    }
 
-        console.log(this.segmentCount);
+    setColor(value) {
+        this.color = value;
+        this.path.strokeColor = this.color;
     }
 
     setSpeed(value) {
@@ -261,6 +265,10 @@ window.onload = function() {
 
         meander.setLength(MEANDER_SEGMENT_COUNT)
         meander.generate();
+    }
+
+    document.getElementById("colorpicker").oninput = function() {
+        meander.setColor(this.value);
     }
 
     range("weight", DEFAULT_WEIGHT_RANGE).oninput = function() {
