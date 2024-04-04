@@ -3,7 +3,7 @@ const MEANDER_SEGMENT_COUNT = 20;
 
 const DEFAULT_WEIGHT_RANGE  = { "min": "0", "max": "400", "value": "50", "step": "1" };
 const DEFAULT_SPEED_RANGE  = { "min": "0", "max": "1000", "value": "50", "step": "1" };
-const DEFAULT_LENGTH_RANGE = { "min": "4", "max": "50", "value": "20" };
+const DEFAULT_LENGTH_RANGE = { "min": "4", "max": "100", "value": "20" };
 
 function normalRiverAlgorithm(path, speed, width, height, segmentCount, curvatures) {
     let startPoint = new Point(width / 2, 0);
@@ -76,7 +76,7 @@ class Meander {
         this._height = height;
 
         this.path = null;
-        this.segmentCount = 20;
+        this.segmentCount = MEANDER_SEGMENT_COUNT;
         this.curvatures = []
 
         this.algorithm = normalRiverAlgorithm
@@ -259,6 +259,7 @@ window.onload = function() {
         lengthInput.style.display = "flex";
         algorithmInputGroup.style.display = "flex";
 
+        meander.setLength(MEANDER_SEGMENT_COUNT)
         meander.generate();
     }
 
