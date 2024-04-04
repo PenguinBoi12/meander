@@ -76,7 +76,7 @@ class Meander {
         this._height = height;
 
         this.path = null;
-        this.segmentCount = MEANDER_SEGMENT_COUNT;
+        this.segmentCount = 20;
         this.curvatures = []
 
         this.algorithm = normalRiverAlgorithm
@@ -107,7 +107,7 @@ class Meander {
         );
     }
 
-    generate_from_path(path) {
+    generateFromPath(path) {
         path.strokeColor = "#000000";
         path.strokeWidth = DEFAULT_WEIGHT_RANGE["value"];
         path.strokeCap = "round";
@@ -126,7 +126,9 @@ class Meander {
 
     add(point) {
         this.path.add(point);
-        this.segementCount = this.path.segments.length;
+        this.segmentCount += 1;
+
+        console.log(this.segmentCount);
     }
 
     setSpeed(value) {
@@ -175,6 +177,7 @@ window.onload = function() {
     let drawing = false;
 
     const settingBox = document.getElementById("settings");
+    const lengthInput = document.getElementById("length");
     const algorithmInputGroup = document.getElementById("algorithm");
 
     const meander = new Meander(view.size.width, view.size.height);
@@ -199,10 +202,12 @@ window.onload = function() {
     }
 
     document.getElementById("generate").onclick = function() {
-        if (drawing) 
-            meander.generate_from_path(new Path());
-        else
+        if (drawing) {
+            meander.generateFromPath(new Path());
+            _toggleAnimation(false)
+        } else {
             meander.generate();
+        }
     }
 
     document.getElementById("exportSVG").onclick = function() {
@@ -237,9 +242,11 @@ window.onload = function() {
 
         settingBox.classList.add("draw");
         settingBox.classList.remove("line");
+
+        lengthInput.style.display = "none";
         algorithmInputGroup.style.display = "none";
 
-        meander.generate_from_path(new Path());
+        meander.generateFromPath(new Path());
     }
 
     document.getElementById("line").onclick = function() {
@@ -248,6 +255,8 @@ window.onload = function() {
 
         settingBox.classList.add("line");
         settingBox.classList.remove("draw");
+
+        lengthInput.style.display = "flex";
         algorithmInputGroup.style.display = "flex";
 
         meander.generate();
@@ -293,7 +302,7 @@ window.onload = function() {
     view.onFrame = function(event) {
         if (!meander.animated || meander.speed == 0) return;
 
-        for (let i = 1; i < meander.segmentCount - 1; i++) {
+        for (let i = 1; i < meander.path.segments.length - 1; i++) {
             let segment = meander.path.segments[i];
 
             if (segment) {

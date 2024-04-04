@@ -15,9 +15,9 @@
     </head>
     <body class="overflow-hidden">
         <div class="grid h-screen">
-            <div class="title">
+            <a class="title cursor-pointer" href="index.html">
                 <span class="inline-block align-middle">MÉANDRE EXP3</span>
-            </div>
+            </a>
 
             <div class="flex flex-col">
                 <canvas class="flex-1" id="meanderCanvas"></canvas>
@@ -37,7 +37,7 @@
                         <input name="speed" type="range">
                     </div>
 
-                    <div class="input-group">
+                    <div id="length" class="input-group">
                         <label for="length">Longueur</label>
                         <input name="length" type="range">
                     </div>
