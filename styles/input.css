@@ -4,7 +4,7 @@
 
 html, body {
 	font-family: Helvetica, Arial, sans-serif;
-	background-color: #D7D5D3;
+	background-color: #E4D9D2;
 
 	@apply w-full h-full
 }
@@ -114,7 +114,7 @@ input[type="radio"]:checked::before {
 	justify-content: center;
 	align-items: center;
 
-	background-color: #29AA5D;
+	background-color: #2CA455;
 	border: 2px solid #000;
 
 	@apply floating-container
@@ -155,22 +155,22 @@ input[type="radio"]:checked::before {
 }
 
 .settings .line {
-	background-color: #03BEDE;
+	background-color: #3999F2;
 }
 
 .settings .draw {
-	background-color: #E16AB7;
+	background-color: #EA98FF;
 }
 
 .settings button {
 	padding: 5px 0px;
-	background-color: #29AA5D;
+	background-color: #2CA455;
 }
 
 .info {
 	bottom: 0;
 
-	background-color: #F9E80A;
+	background-color: #BD946F;
 	border: 2px solid #000;
 
 	@apply floating-container
@@ -185,5 +185,5 @@ input[type="radio"]:checked::before {
 	border: 2px solid #000;
 	outline: none;
 
-	background-color: #F9E80A;
+	background-color: #BD946F;
 }
