@@ -182,6 +182,7 @@ window.onload = function() {
 
     const settingBox = document.getElementById("settings");
     const lengthInput = document.getElementById("length");
+    const speedInput = document.getElementById("speed");
     const algorithmInputGroup = document.getElementById("algorithm");
 
     const meander = new Meander(view.size.width, view.size.height);
@@ -248,6 +249,7 @@ window.onload = function() {
         settingBox.classList.remove("line");
 
         lengthInput.style.display = "none";
+        speedInput.style.display = "none";
         algorithmInputGroup.style.display = "none";
 
         meander.generateFromPath(new Path());
@@ -261,6 +263,7 @@ window.onload = function() {
         settingBox.classList.remove("draw");
 
         lengthInput.style.display = "flex";
+        speedInput.style.display = "flex";
         algorithmInputGroup.style.display = "flex";
 
         meander.setLength(MEANDER_SEGMENT_COUNT)
